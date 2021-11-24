@@ -10,22 +10,59 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    .attribution { display: none; font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+
+  <link rel="stylesheet" href="./flip/flip.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  We're launching soon
+  <main>
+    <h1>We're launching soon</h1>
 
-  Days
-  Hours
-  Minutes
-  Seconds
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+    <div class="tick"
+         data-did-init="handleTickInit">
+
+        <div data-repeat="true"
+             data-layout="horizontal center"
+             data-transform="preset(d, h, m, s) -> delay">
+
+            <div class="tick-group">
+
+                <div data-key="value"
+                     data-repeat="true"
+                     data-transform="pad(00) -> split -> delay">
+
+                    <span data-view="flip"></span>
+
+                </div>
+
+                <span data-key="label"
+                      data-view="text"
+                      class="tick-label"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener noreferrer">Frontend Mentor</a>. 
+      Coded by <a href="https://twitter.com/bwalkermills">Byron</a>.
+    </div>
+  </main>
+
+  <script>
+    function handleTickInit(tick) {
+      const today = new Date();
+      const nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+
+      Tick.count.down(nextweek).onupdate = function(value) {
+        tick.value = value;
+      };
+    }
+  </script>
+
+  <script src="./flip/flip.min.js"></script>
 </body>
 </html>
